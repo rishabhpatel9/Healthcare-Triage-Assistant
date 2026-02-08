@@ -21,8 +21,7 @@ class PatientData(BaseModel):
 
 @app.post("/predict")
 def predict(data: PatientData):
-    
     df = pd.DataFrame([data.dict()])
-    
+    df = df.reindex(columns=model.feature_names_in_, fill_value=0)
     prediction = model.predict(df)[0]
     return {"triage_level": int(prediction)}
