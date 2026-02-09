@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("Healthcare Triage Assistant")
+st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", unsafe_allow_html=True)
 
 # Input form
 age = st.number_input("Age", min_value=0, max_value=120)
@@ -12,9 +12,15 @@ temperature = st.number_input("Body Temperature (°C)", min_value=30.0, max_valu
 pain = st.slider("Pain Level (0-10)", 0, 10)
 chronic = st.number_input("Chronic Disease Count", min_value=0, max_value=10)
 visits = st.number_input("Previous ER Visits", min_value=0, max_value=20)
-arrival = st.selectbox("Arrival Mode", ["walk_in", "ambulance", "wheelchair"])
 
+arrival = st.segmented_control(
+    "Arrival Mode",
+     options=["walk_in", "ambulance", "wheelchair"],
+     default="walk_in"
+)
+    
 # Encode arrival mode
+arrival_walk_in = 1 if arrival == "walk_in" else 0
 arrival_ambulance = 1 if arrival == "ambulance" else 0
 arrival_wheelchair = 1 if arrival == "wheelchair" else 0
 
@@ -32,4 +38,14 @@ if st.button("Predict Triage Level"):
         "arrival_mode_wheelchair": arrival_wheelchair
     }
     response = requests.post("http://127.0.0.1:8000/predict", json=payload)
-    st.success(f"Triage Level: {response.json()['triage_level']}")
+    triage_level = response.json()['triage_level']
+    #st.success(f"Triage Level: {triage_level}")
+
+    if triage_level == 0:
+        st.success("🟢 Routine Case (Level 0)")
+    elif triage_level == 1:
+        st.warning("🟡 Urgent Case (Level 1)")
+    elif triage_level == 2:
+        st.error("🔴 Emergency Case (Level 2)")
+    elif triage_level == 3:
+        st.info("🔵 Self-care Case (Level 3)")
