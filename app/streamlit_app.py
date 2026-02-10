@@ -10,16 +10,10 @@ with st.form("triage_form"):
     systolic_bp = st.number_input("Systolic Blood Pressure", min_value=50, max_value=250)
     oxygen = st.number_input("Oxygen Saturation (%)", min_value=50, max_value=100)
     temperature = st.number_input("Body Temperature (°C)", min_value=30.0, max_value=45.0)
-    pain = st.slider("Pain Level (0-10)", 0, 10)
     chronic = st.number_input("Chronic Disease Count", min_value=0, max_value=10)
     visits = st.number_input("Previous ER Visits", min_value=0, max_value=20)
-
-    arrival = st.segmented_control(
-        "Arrival Mode",
-        options=["walk_in", "ambulance", "wheelchair"],
-        default="walk_in"
-    )
-    
+    pain = st.slider("Pain Level (0-10)", 0, 10)
+    arrival = st.segmented_control("Arrival Mode", options=["walk_in", "ambulance", "wheelchair"], default="walk_in")
     submitted = st.form_submit_button("Predict Triage Level")
 
 # Encode arrival mode
