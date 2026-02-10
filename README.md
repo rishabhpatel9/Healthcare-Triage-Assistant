@@ -54,7 +54,7 @@ Healthcare-Triage-Assistant/
 │   └── cleandata.ipynb                    # Data cleaning & Model training
 ├── src/
 │   ├── api.py                              # FastAPI backend
-│   ├── model.pkl                           # Trained ML model
+│   └── model.pkl                           # Trained ML model
 ├── LICENSE
 ├── README.md
 └── requirements.txt
