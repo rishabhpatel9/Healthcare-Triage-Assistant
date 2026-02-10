@@ -24,6 +24,13 @@ It demonstrates the full ML lifecycle:
 
 ---
 
+
+## Dataset
+
+This project uses the [Synthetic Medical Triage Priority Dataset](https://www.kaggle.com/datasets/emirhanakku/synthetic-medical-triage-priority-dataset/) from Kaggle for model development and evaluation.
+
+---
+
 ## Features
 
 - Predicts triage levels (Routine, Urgent, Emergency, Self-care/Non-urgent)
