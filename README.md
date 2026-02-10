@@ -45,15 +45,19 @@ This project uses the [Synthetic Medical Triage Priority Dataset](https://www.ka
 
 ```bash
 Healthcare-Triage-Assistant/
-├── src/
-│   ├── api.py          # FastAPI backend
-│   ├── model.pkl       # Trained ML model
 ├── app/
-│   └── streamlit_app.py # Streamlit frontend
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-└── README.md
+│   └── streamlit_app.py                    # Streamlit frontend
+├── data/
+│   └── raw/
+│       └──synthetic_medical_triage.csv     # Raw dataset
+├── notebooks/
+│   └── cleandata.ipynb                    # Data cleaning & Model training
+├── src/
+│   ├── api.py                              # FastAPI backend
+│   ├── model.pkl                           # Trained ML model
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
 
 ---
