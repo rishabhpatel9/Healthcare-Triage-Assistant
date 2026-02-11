@@ -1,8 +1,11 @@
-fastapi
-uvicorn
-pydantic
-joblib
 pandas
+seaborn
+matplotlib
 scikit-learn
+imblearn
+joblib
+fastapi
+pydantic
+uvicorn
 streamlit
 requests
