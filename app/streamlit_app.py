@@ -38,7 +38,7 @@ if submitted:
     #st.write("### Patient Summary")
     #st.json(payload)
 
-    response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+    response = requests.post("http://backend:8000/predict", json=payload)
     triage_level = response.json()['triage_level']
     #st.success(f"Triage Level: {triage_level}")
 
