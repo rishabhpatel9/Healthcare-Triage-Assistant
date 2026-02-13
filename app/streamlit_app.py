@@ -37,7 +37,11 @@ if submitted:
 
     #st.write("### Patient Summary")
     #st.json(payload)
-
+    
+    #Uncomment the line below to test with local backend
+    #response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+    
+    #response for dockerized backend
     response = requests.post("http://backend:8000/predict", json=payload)
     triage_level = response.json()['triage_level']
     #st.success(f"Triage Level: {triage_level}")

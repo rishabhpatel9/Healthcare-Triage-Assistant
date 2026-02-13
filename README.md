@@ -24,14 +24,13 @@ It demonstrates the full ML lifecycle:
 
 ---
 
-
 ## Dataset
 
 This project uses the [Synthetic Medical Triage Priority Dataset](https://www.kaggle.com/datasets/emirhanakku/synthetic-medical-triage-priority-dataset/) from Kaggle for model development and evaluation.
 
 ---
 
-## Features
+## Project Features
 
 - Predicts triage levels (Routine, Urgent, Emergency, Self-care/Non-urgent)
 - FastAPI backend with RESTful API endpoints
@@ -102,18 +101,7 @@ Build and run with docker-compose:
 docker-compose up --build
 ```
 
-* Backend → `http://localhost:8000`
-* Frontend → `http://localhost:8501`
-
----
-
-## Releases
-
-This project uses GitHub Releases to track milestones. (Yet to implement)
-
-* **v1.0.0** → First working version with FastAPI + Streamlit
-* **v1.1.0** → Added segmented controls and color-coded triage output
-* **v2.0.0** → Dockerized deployment
+Use Streamlit app frontend → `http://localhost:8501`
 
 ---
 
@@ -121,8 +109,41 @@ This project uses GitHub Releases to track milestones. (Yet to implement)
 
 Once backend is running, visit:
 
-* Swagger UI → `http://localhost:8000/docs`
+* API Documentation → `http://localhost:8000/docs`
 * Redoc → `http://localhost:8000/redoc`
+
+---
+
+## Model Training Features
+
+The triage classifier was trained on patient intake data with the following features:
+
+- **Age** → Patient’s age in years
+- **Heart Rate** → Beats per minute
+- **Systolic Blood Pressure** → mmHg
+- **Oxygen Saturation (SpO₂)** → Percentage
+- **Body Temperature** → Patient's body temperature (°C)
+- **Chronic Disease Count** → Number of chronic conditions
+- **Previous ER Visits** → Number of prior emergency room visits
+- **Pain Level** → Self-reported scale (0–10)
+- **Arrival Mode** → Walk-in, Ambulance, Referral
+
+
+### Target Variable - Triage Level
+Ouput shown as:
+  - 🟢 Routine  
+  - 🟡 Urgent  
+  - 🔴 Emergency  
+  - 🔵 Self-care / Non-urgent
+
+---
+## Releases
+
+This project uses GitHub Releases to track milestones.
+
+* **v1.0.0** → First working version with FastAPI + Streamlit
+* **v1.0.1** → Minor fixes
+* **v1.1.0** → Dockerized deployment
 
 ---
 
