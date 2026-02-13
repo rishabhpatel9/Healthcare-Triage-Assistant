@@ -6,7 +6,7 @@
 ![Docker](https://img.shields.io/badge/Docker-Deployment-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
-> End-to-end ML deployment project predicting patient triage levels using FastAPI, Streamlit, and Docker.
+End-to-end ML deployment project predicting patient triage levels using FastAPI, Streamlit, and Docker.
 
 ---
 
@@ -55,6 +55,9 @@ Healthcare-Triage-Assistant/
 ├── src/
 │   ├── api.py                              # FastAPI backend
 │   └── model.pkl                           # Trained ML model
+├── .dockerignore
+├── docker-compose.yml                      # Docker Compose configuration
+├── Dockerfile                              # Docker definition
 ├── LICENSE
 ├── README.md
 └── requirements.txt
