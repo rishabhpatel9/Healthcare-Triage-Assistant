@@ -157,6 +157,7 @@ This project uses GitHub Releases to track milestones.
 
 ## Future Work
 
+* Implement GenAI for explaining predictions to first line (potentially non-clinical) healthcare staff why the model made a certain triage prediction
 * Improve model accuracy with larger datasets
 * Integrate hospital database for real patient records
 * Add authentication & role-based access control
