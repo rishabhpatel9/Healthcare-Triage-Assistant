@@ -2,6 +2,19 @@ import streamlit as st
 import requests
 import os
 
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
+#comment out the line below for local testing
+BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
+
+def wake_backend():
+    try:
+        requests.get("https://healthcare-triage-assistant-backend.onrender.com/docs", timeout=5)
+    except Exception:
+        pass  # ignore errors, just triggers wake-up
+
+wake_backend()
+
+
 st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", unsafe_allow_html=True)
 
 # Input form
@@ -38,10 +51,6 @@ if submitted:
 
     #st.write("### Patient Summary")
     #st.json(payload)
-    
-    BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
-    #comment out the line below for local testing
-    BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
     
     #response for dockerized backend
     response = requests.post(BACKEND_URL, json=payload)

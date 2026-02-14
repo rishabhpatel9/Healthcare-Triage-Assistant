@@ -146,8 +146,6 @@ Ouput shown as:
 ---
 ## Releases
 
-This project uses GitHub Releases to track milestones.
-
 * **v1.0.0** → First working version with FastAPI + Streamlit
 * **v1.0.1** → Minor fixes
 * **v1.1.0** → Dockerized deployment
