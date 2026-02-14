@@ -147,6 +147,14 @@ This project uses GitHub Releases to track milestones.
 
 ---
 
+## Future Work
+
+* Deploy the project on render
+* Improve model accuracy with larger datasets
+* Integrate hospital database for real patient records
+* Add authentication & role-based access control
+
+---
 ## Contributing
 
 Contributions are welcome!
@@ -154,11 +162,3 @@ Contributions are welcome!
 * Fork the repo
 * Create a feature branch
 * Submit a pull request
-
----
-
-## Future Work
-
-* Integrate hospital database for real patient records
-* Add authentication & role-based access
-* Improve model accuracy with larger datasets
