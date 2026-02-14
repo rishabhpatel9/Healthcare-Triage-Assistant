@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ /app/src
-COPY model.pkl /app/src/model.pkl
+COPY model.pkl src/model.pkl
 
 EXPOSE 8000
 
