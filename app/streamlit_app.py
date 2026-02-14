@@ -40,6 +40,7 @@ if submitted:
     #st.json(payload)
     
     BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
+    #comment out the line below for local testing
     BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
     
     #response for dockerized backend

@@ -8,6 +8,13 @@
 
 End-to-end ML deployment project predicting patient triage levels using FastAPI, Streamlit, and Docker.
 
+**You can now test the app and inspect the API deployed on Render!** 
+
+**Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)
+**Inspect the API:** [API Docs](https://healthcare-triage-assistant-backend.onrender.com/docs)
+
+*Note: The frontend and backend services may take a moment to start if inactive, as they sleep after 15 minutes of no use. Thanks for your patience!*
+
 ---
 
 ## Overview
@@ -144,12 +151,12 @@ This project uses GitHub Releases to track milestones.
 * **v1.0.0** → First working version with FastAPI + Streamlit
 * **v1.0.1** → Minor fixes
 * **v1.1.0** → Dockerized deployment
+* **v1.2.0** → Split docker frontend and backend for deployment + project deployed on Render for visitors to test/inspect
 
 ---
 
 ## Future Work
 
-* Deploy the project on render
 * Improve model accuracy with larger datasets
 * Integrate hospital database for real patient records
 * Add authentication & role-based access control
