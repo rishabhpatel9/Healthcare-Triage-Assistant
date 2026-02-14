@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import os
 
 st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", unsafe_allow_html=True)
 
@@ -38,11 +39,11 @@ if submitted:
     #st.write("### Patient Summary")
     #st.json(payload)
     
-    #Uncomment the line below to test with local backend
-    #response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+    BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
+    BACKEND_URL = "https://healthcare-backend.onrender.com/predict"
     
     #response for dockerized backend
-    response = requests.post("http://backend:8000/predict", json=payload)
+    response = requests.post(BACKEND_URL, json=payload)
     triage_level = response.json()['triage_level']
     #st.success(f"Triage Level: {triage_level}")
 

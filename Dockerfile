@@ -16,4 +16,4 @@ EXPOSE 8501
 
 # Default command runs both backend and frontend
 CMD uvicorn src.api:app --host 0.0.0.0 --port 8000 & \
-    streamlit run app/streamlit_app.py --server.port 8501 --server.headless true
+    streamlit run app/streamlit_app.py --server.port 10000 --server.headless true
