@@ -41,6 +41,7 @@ if submitted:
     
     BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
     BACKEND_URL = "https://healthcare-backend.onrender.com/predict"
+    #to be fixed
     
     #response for dockerized backend
     response = requests.post(BACKEND_URL, json=payload)

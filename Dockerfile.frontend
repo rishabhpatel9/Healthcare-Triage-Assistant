@@ -1,0 +1,14 @@
+# Frontend: Streamlit
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Copy only frontend code + requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app/ /app/app
+
+EXPOSE 10000
+
+CMD ["streamlit", "run", "app/streamlit_app.py", "--server.port=10000", "--server.headless=true"]
