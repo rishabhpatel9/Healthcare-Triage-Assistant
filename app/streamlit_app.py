@@ -1,4 +1,3 @@
-import time
 import streamlit as st
 import requests
 import os
@@ -8,20 +7,12 @@ BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
 BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
 
 def wake_backend():
-    max_retries = 5
-    for attempt in range(max_retries):
-        try:
-            # Ping backend with a lightweight request
-            r = requests.get("https://healthcare-triage-assistant-backend.onrender.com/", timeout=5)
-            if r.status_code == 200:
-                st.write("Backend is awake ✅")
-                return True
-        except Exception:
-            pass
-        st.write(f"Waiting for backend... (attempt {attempt+1})")
-        time.sleep(3)
-    st.write("⚠️ Backend did not respond in time.")
-    return False
+    try:
+        requests.get("https://healthcare-triage-assistant-backend.onrender.com/", timeout=5)
+    except Exception:
+        pass  # ignore errors, just triggers wake-up
+
+wake_backend()
 
 # Call this once when the app starts
 wake_backend()
