@@ -45,11 +45,7 @@ def predict(data: PatientData):
     }
 
     payload = {
-        "model": [
-            "stepfun/step-3.5-flash",
-            #"sourceful/riverflow-v2-fast",
-            #"z-ai/glm-4.7-flash"
-        ],
+        "model": "stepfun/step-3.5-flash",
         "messages": [
             {"role": "system", "content": "You are a helpful healthcare triage assistant software trained to explain triage decisions to laymen."},
             {"role": "user", "content": prompt}
