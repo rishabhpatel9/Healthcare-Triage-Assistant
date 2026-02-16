@@ -45,7 +45,7 @@ def predict(data: PatientData):
     }
 
     payload = {
-        "model": "stepfun/step-3.5-flash",
+        "model": "stepfun/step-3.5-flash:free",
         "messages": [
             {"role": "system", "content": "You are a helpful healthcare triage assistant software trained to explain triage decisions to laymen."},
             {"role": "user", "content": prompt}
