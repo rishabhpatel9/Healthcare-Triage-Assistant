@@ -54,10 +54,13 @@ if submitted:
     #st.write("### Patient Summary")
     #st.json(payload)
     
-    #response for dockerized backend
-    response = requests.post(BACKEND_URL, json=payload)
-    triage_level = response.json()['triage_level']
-    #st.success(f"Triage Level: {triage_level}")
+# response for dockerized backend
+response = requests.post(BACKEND_URL, json=payload)
+
+if response.status_code == 200:
+    result = response.json()
+    triage_level = result['triage_level']
+    explanation = result.get('explanation', "No explanation available")
 
     if triage_level == 0:
         st.success("🟢 Routine Case (Level 0)")
@@ -67,3 +70,10 @@ if submitted:
         st.error("🔴 Emergency Case (Level 2)")
     elif triage_level == 3:
         st.info("🔵 Self-care Case (Level 3)")
+
+    # Show explanation under triage level
+    st.write("**Explanation:**")
+    st.write(explanation)
+else:
+    st.error("Backend error")
+

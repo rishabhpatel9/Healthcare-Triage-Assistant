@@ -45,10 +45,10 @@ def predict(data: PatientData):
     }
 
     payload = {
-        "models": [
+        "model": [
             "stepfun/step-3.5-flash",
-            "sourceful/riverflow-v2-fast",
-            "z-ai/glm-4.7-flash"
+            #"sourceful/riverflow-v2-fast",
+            #"z-ai/glm-4.7-flash"
         ],
         "messages": [
             {"role": "system", "content": "You are a helpful healthcare triage assistant software trained to explain triage decisions to laymen."},
@@ -61,5 +61,7 @@ def predict(data: PatientData):
         explanation = response.json()["choices"][0]["message"]["content"]
     except Exception as e:
         explanation = f"Explanation service error: {e}"
+    #to remove;debugging
+    print("OpenRouter raw response:", response.text)
 
     return {"triage_level": triage_level, "explanation": explanation}
