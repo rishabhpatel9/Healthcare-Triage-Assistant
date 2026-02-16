@@ -26,20 +26,12 @@ OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 @app.post("/predict")
 def predict(data: PatientData):
-    df = pd.DataFrame([data.dict()])
+    df = pd.DataFrame([data.model_dump()])
     df = df.reindex(columns=model.feature_names_in_, fill_value=0)
     prediction = model.predict(df)[0]
-    
-    #for local testing, uncomment the next line to return just the prediction without explanation. Also comment out the rest of the code below. 
-    #return {"triage_level": int(prediction)}
     triage_level = int(prediction)
 
-    # Ask OpenRouter for layman explanation
-    headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json"
-    }
-
+    # Build prompt for layman explanation
     prompt = f"""
     A healthcare triage model decided the patient should be '{triage_level}'.
     Inputs: {data.model_dump()}.
@@ -47,16 +39,25 @@ def predict(data: PatientData):
     Do not talk about parameter weights or technical details.
     """
 
-    body = {
-        "model": "openai/gpt-3.5-turbo",  
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "models": [
+            "stepfun/step-3.5-flash",
+            "sourceful/riverflow-v2-fast",
+            "z-ai/glm-4.7-flash"
+        ],
         "messages": [
-            {"role": "system", "content": "You are a helpful medical explainer."},
+            {"role": "system", "content": "You are a helpful healthcare triage assistant software trained to explain triage decisions to laymen."},
             {"role": "user", "content": prompt}
         ]
     }
 
     try:
-        response = requests.post(OPENROUTER_URL, headers=headers, json=body)
+        response = requests.post(OPENROUTER_URL, headers=headers, json=payload)
         explanation = response.json()["choices"][0]["message"]["content"]
     except Exception as e:
         explanation = f"Explanation service error: {e}"
