@@ -31,33 +31,38 @@ def predict(data: PatientData):
     prediction = model.predict(df)[0]
     triage_level = int(prediction)
 
-    # Build prompt for layman explanation
-    prompt = f"""
-    A healthcare triage model decided the patient should be '{triage_level}'.
-    Inputs: {data.model_dump()}.
-    Explain in simple layman terms why this decision makes sense.
-    Do not talk about parameter weights or technical details.
-    """
-
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json"
     }
 
     payload = {
-        "model": "stepfun/step-3.5-flash:free",
-        "messages": [
-            {"role": "system", "content": "You are a helpful healthcare triage assistant software trained to explain triage decisions to laymen."},
-            {"role": "user", "content": prompt}
-        ]
-    }
+    "model": "stepfun/step-3.5-flash:free",  # single model string
+    "messages": [
+        {
+            "role": "system",
+            "content": (
+                "You are a healthcare triage explainer."
+                "The triage level is already decided by another model."
+                "Do not re-evaluate inputs."
+                "Explain briefly in layman terms why this level makes sense."
+                "Respond in at most 2 sentences."
+                "Triage scale: 0=Routine (least severe), 1=Urgent, "
+                "2=Emergency (most severe), 3=Self-care."
+            )
+        },
+        {
+            "role": "user",
+            "content": f"Triage Level: {triage_level}. Patient summary: {data.model_dump()}"
+        }
+    ]
+}
+
 
     try:
         response = requests.post(OPENROUTER_URL, headers=headers, json=payload)
         explanation = response.json()["choices"][0]["message"]["content"]
     except Exception as e:
         explanation = f"Explanation service error: {e}"
-    #to remove;debugging
-    print("OpenRouter raw response:", response.text)
 
     return {"triage_level": triage_level, "explanation": explanation}
