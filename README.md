@@ -6,28 +6,27 @@
 ![Docker](https://img.shields.io/badge/Docker-Deployment-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
-End-to-end ML deployment project predicting patient triage levels using FastAPI, Streamlit, and Docker.
+End-to-end ML deployment project predicting patient triage levels using FastAPI, Streamlit, and Docker followed by a short GenAI explanation of the predictions.
 
 **You can now test the app and inspect the API deployed on Render!** 
 
 **Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)
 **Inspect the API:** [API Docs](https://healthcare-triage-assistant-backend.onrender.com/docs)
 
-*Note: The frontend and backend services may take a moment to start if inactive, as they sleep after 15 minutes of no use. Thanks for your patience!*
-
 ---
 
 ## Overview
 
-The Healthcare Triage Assistant is a ML project designed to support emergency departments by predicting patient triage levels based on vital signs, symptoms, and arrival mode.
+The Healthcare Triage Assistant is a ML project designed to support emergency departments by predicting patient triage levels based on vital signs, symptoms, and arrival mode. It provides a user friendly interface for healthcare staff to quickly assess patient urgency and prioritize care effectively. Also includes a GenAI explanation feature to help non-clinical staff understand the model's predictions in an intuitive way.
 
-It demonstrates the full ML lifecycle:
+The project demonstrates the full ML lifecycle:
 
 - Data wrangling & feature engineering
 - Model training & evaluation
 - FastAPI backend for serving predictions
 - Streamlit frontend with intuitive hospital friendly UI
 - Dockerized deployment for portability
+- GenAI integration for explainability
 
 ---
 
@@ -44,6 +43,7 @@ This project uses the [Synthetic Medical Triage Priority Dataset](https://www.ka
 - Streamlit frontend with segmented controls and color-codedoutputs
 - Dockerized setup with `docker-compose` for easy deployment
 - Interactive API documentation (`/docs`) for API exploration
+- GenAI integration for explainability
 
 ---
 
@@ -143,6 +143,8 @@ Ouput shown as:
   - 🔴 Emergency  
   - 🔵 Self-care / Non-urgent
 
+along with a short GenAI explanation of the prediction.
+
 ---
 ## Releases
 
@@ -150,12 +152,12 @@ Ouput shown as:
 * **v1.0.1** → Minor fixes
 * **v1.1.0** → Dockerized deployment
 * **v1.2.0** → Split docker frontend and backend for deployment + project deployed on Render for visitors to test/inspect
+* **v2.0.0** → Added GenAI explanation feature to help non-clinical staff understand the model's predictions in an intuitive way + API updated to return both prediction and explanation in a single response
 
 ---
 
 ## Future Work
 
-* Implement GenAI for explaining predictions to first line (potentially non-clinical) healthcare staff why the model made a certain triage prediction
 * Improve model accuracy with larger datasets
 * Integrate hospital database for real patient records
 * Add authentication & role-based access control
