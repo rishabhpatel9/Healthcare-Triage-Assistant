@@ -10,7 +10,7 @@ End-to-end ML deployment project predicting patient triage levels using FastAPI,
 
 **You can now test the app and inspect the API deployed on Render!** 
 
-**Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)
+**Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)\
 **Inspect the API:** [API Docs](https://healthcare-triage-assistant-backend.onrender.com/docs)
 
 ---
