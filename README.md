@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-red)
+![GenAI](https://img.shields.io/badge/Generative%20AI-Integrated-blueviolet)
 ![Docker](https://img.shields.io/badge/Docker-Deployment-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
