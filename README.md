@@ -41,7 +41,7 @@ This project uses the [Synthetic Medical Triage Priority Dataset](https://www.ka
 
 - Predicts triage levels (Routine, Urgent, Emergency, Self-care/Non-urgent)
 - FastAPI backend with RESTful API endpoints
-- Streamlit frontend with segmented controls and color-codedoutputs
+- Streamlit frontend with segmented controls and color coded outputs
 - Dockerized setup with `docker-compose` for easy deployment
 - Interactive API documentation (`/docs`) for API exploration
 - GenAI integration for explainability
