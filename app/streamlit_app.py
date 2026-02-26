@@ -22,10 +22,10 @@ st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", 
 # Input form
 with st.form("triage_form"):
     age = st.number_input("Age", min_value=0, max_value=120)
-    heart_rate = st.number_input("Heart Rate", min_value=30, max_value=220)
-    systolic_bp = st.number_input("Systolic Blood Pressure", min_value=50, max_value=250)
-    oxygen = st.number_input("Oxygen Saturation (%)", min_value=50, max_value=100)
-    temperature = st.number_input("Body Temperature (°C)", min_value=30.0, max_value=45.0)
+    heart_rate = st.number_input("Heart Rate", min_value=30, max_value=220, value=80)
+    systolic_bp = st.number_input("Systolic Blood Pressure", min_value=50, max_value=250, value=100)
+    oxygen = st.number_input("Oxygen Saturation (%)", min_value=50, max_value=100, value=98)
+    temperature = st.number_input("Body Temperature (°C)", min_value=30.0, max_value=45.0, value=37.0)
     chronic = st.number_input("Chronic Disease Count", min_value=0, max_value=10)
     visits = st.number_input("Previous ER Visits", min_value=0, max_value=20)
     pain = st.slider("Pain Level (0-10)", 0, 10)
