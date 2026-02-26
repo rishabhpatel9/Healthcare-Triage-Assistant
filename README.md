@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-API-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-red)
+![GenAI](https://img.shields.io/badge/Generative%20AI-Integrated-blueviolet)
 ![Docker](https://img.shields.io/badge/Docker-Deployment-blue)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
@@ -10,7 +11,7 @@ End-to-end ML deployment project predicting patient triage levels using FastAPI,
 
 **You can now test the app and inspect the API deployed on Render!** 
 
-**Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)
+**Streamlit app**: [Healthcare Triage Assistant Frontend](https://healthcare-triage-assistant.onrender.com/)\
 **Inspect the API:** [API Docs](https://healthcare-triage-assistant-backend.onrender.com/docs)
 
 ---
@@ -40,7 +41,7 @@ This project uses the [Synthetic Medical Triage Priority Dataset](https://www.ka
 
 - Predicts triage levels (Routine, Urgent, Emergency, Self-care/Non-urgent)
 - FastAPI backend with RESTful API endpoints
-- Streamlit frontend with segmented controls and color-codedoutputs
+- Streamlit frontend with segmented controls and color coded outputs
 - Dockerized setup with `docker-compose` for easy deployment
 - Interactive API documentation (`/docs`) for API exploration
 - GenAI integration for explainability
