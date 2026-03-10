@@ -90,9 +90,11 @@ cd Healthcare-Triage-Assistant
 Before running the application, you need to configure your environment variables:
 
 1. Copy `example.env` to `.env`:
-   ```bash
-   cp example.env .env
-   ```
+
+```bash
+cp example.env .env
+```
+
 2. Open `.env` and fill in the required variables (specifically `OPENROUTER_API_KEY` for the GenAI explanations).
 
 Install dependencies:
