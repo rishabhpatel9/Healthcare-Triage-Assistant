@@ -64,10 +64,14 @@ Healthcare-Triage-Assistant/
 │   └── model.pkl                           # Trained ML model
 ├── .dockerignore
 ├── docker-compose.yml                      # Docker Compose configuration
-├── Dockerfile                              # Docker definition
+├── Dockerfile.backend                      # Docker definition for backend
+├── Dockerfile.frontend                     # Docker definition for frontend
+├── example.env
 ├── LICENSE
 ├── README.md
-└── requirements.txt
+├── requirements-backend.txt                # For docker backend
+├── requirements-frontend.txt               # For docker frontend
+└── requirements.txt                        # For local deployment
 ```
 
 ---
@@ -155,15 +159,6 @@ Ouput shown as:
   - 🔵 Self-care / Non-urgent
 
 along with a short GenAI explanation of the prediction.
-
----
-## Releases
-
-* **v1.0.0** → First working version with FastAPI + Streamlit
-* **v1.0.1** → Minor fixes
-* **v1.1.0** → Dockerized deployment
-* **v1.2.0** → Split docker frontend and backend for deployment + project deployed on Render for visitors to test/inspect
-* **v2.0.0** → Added GenAI explanation feature to help non-clinical staff understand the model's predictions in an intuitive way + API updated to return both prediction and explanation in a single response
 
 ---
 
