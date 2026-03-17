@@ -7,7 +7,7 @@ WORKDIR /app
 COPY requirements-frontend.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app/streamlit_app.py /app/app/streamlit_app.py
+COPY app/ /app/app/
 
 EXPOSE 10000
 

@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 import os
 
+st.set_page_config(page_title="Healthcare Triage Assistant", page_icon="app/favicon.ico")
+
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
 #comment out the line below for local testing
 # BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
