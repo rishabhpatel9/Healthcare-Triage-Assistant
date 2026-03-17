@@ -4,18 +4,18 @@ import os
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
 #comment out the line below for local testing
-BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
+# BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
 
-def wake_backend():
-    try:
-        requests.get("https://healthcare-triage-assistant-backend.onrender.com/", timeout=5)
-    except Exception:
-        pass  # ignore errors, just triggers wake-up
+# def wake_backend():
+#     try:
+#         requests.get("https://healthcare-triage-assistant-backend.onrender.com/", timeout=5)
+#     except Exception:
+#         pass  # ignore errors, just triggers wake-up
 
-wake_backend()
+# wake_backend()
 
-# Call this once when the app starts
-wake_backend()
+# # Call this once when the app starts
+# wake_backend()
 
 st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", unsafe_allow_html=True)
 
