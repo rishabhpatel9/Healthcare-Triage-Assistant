@@ -44,7 +44,7 @@ def explain(req: ExplainRequest):
     }
 
     payload = {
-        "model": "nvidia/nemotron-3.5-lightning:free",
+        "model": "z-ai/glm-5.2:free",
         "messages": [
             {
                 "role": "system",
