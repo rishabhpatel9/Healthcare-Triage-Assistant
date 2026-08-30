@@ -37,7 +37,7 @@ def predict(data: PatientData):
     }
 
     payload = {
-    "model": "stepfun/step-3.5-flash:free",  # single model string
+    "model": "nvidia/nemotron-3.5-lightning:free",  # single model string
     "messages": [
         {
             "role": "system",
