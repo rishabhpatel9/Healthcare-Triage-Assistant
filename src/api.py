@@ -44,7 +44,7 @@ def explain(req: ExplainRequest):
     }
 
     payload = {
-        "model": "z-ai/glm-5.2:free",
+        "model": "thinkingmachines/inkling-small:free",
         "messages": [
             {
                 "role": "system",
