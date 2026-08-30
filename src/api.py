@@ -60,9 +60,16 @@ def predict(data: PatientData):
 
 
     try:
-        response = requests.post(OPENROUTER_URL, headers=headers, json=payload)
-        explanation = response.json()["choices"][0]["message"]["content"]
+        response = requests.post(OPENROUTER_URL, headers=headers, json=payload, timeout=15)
+        if response.status_code != 200:
+            print(f"[ERROR] OpenRouter returned status {response.status_code}: {response.text}", flush=True)
+        res_data = response.json()
+        explanation = res_data["choices"][0]["message"]["content"]
     except Exception as e:
+        print(f"[ERROR] Failed to fetch explanation from OpenRouter: {e}", flush=True)
+        if 'response' in locals() and hasattr(response, 'text'):
+            print(f"[ERROR] Raw response content: {response.text}", flush=True)
         explanation = f"Explanation service error: {e}"
 
     return {"triage_level": triage_level, "explanation": explanation}
+
