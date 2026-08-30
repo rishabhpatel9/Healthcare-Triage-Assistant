@@ -4,20 +4,12 @@ import os
 
 st.set_page_config(page_title="Healthcare Triage Assistant", page_icon="app/favicon.ico")
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000/predict")
-#comment out the line below for local testing
-# BACKEND_URL = "https://healthcare-triage-assistant-backend.onrender.com/predict"
-
-# def wake_backend():
-#     try:
-#         requests.get("https://healthcare-triage-assistant-backend.onrender.com/", timeout=5)
-#     except Exception:
-#         pass  # ignore errors, just triggers wake-up
-
-# wake_backend()
-
-# # Call this once when the app starts
-# wake_backend()
+BASE_API_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
+# Normalize base url in case it was set directly to the /predict endpoint
+if BASE_API_URL.endswith("/predict"):
+    BASE_API_URL = BASE_API_URL.rsplit("/predict", 1)[0]
+PREDICT_URL = f"{BASE_API_URL}/predict"
+EXPLAIN_URL = f"{BASE_API_URL}/explain"
 
 st.markdown("<h1 style='text-align: center;'>Healthcare Triage Assistant</h1>", unsafe_allow_html=True)
 
@@ -53,29 +45,45 @@ if submitted:
         "arrival_mode_wheelchair": arrival_wheelchair
     }
 
-    #st.write("### Patient Summary")
-    #st.json(payload)
-    
-    # response for dockerized backend
-    response = requests.post(BACKEND_URL, json=payload)
+    try:
+        response = requests.post(PREDICT_URL, json=payload, timeout=5)
+        if response.status_code == 200:
+            result = response.json()
+            triage_level = result['triage_level']
 
-    if response.status_code == 200:
-        result = response.json()
-        triage_level = result['triage_level']
-        explanation = result.get('explanation', "No explanation available")
+            # Display triage level immediately
+            if triage_level == 0:
+                st.success("🟢 Routine Case (Level 0)")
+            elif triage_level == 1:
+                st.warning("🟡 Urgent Case (Level 1)")
+            elif triage_level == 2:
+                st.error("🔴 Emergency Case (Level 2)")
+            elif triage_level == 3:
+                st.info("🔵 Self-care Case (Level 3)")
 
-        if triage_level == 0:
-            st.success("🟢 Routine Case (Level 0)")
-        elif triage_level == 1:
-            st.warning("🟡 Urgent Case (Level 1)")
-        elif triage_level == 2:
-            st.error("🔴 Emergency Case (Level 2)")
-        elif triage_level == 3:
-            st.info("🔵 Self-care Case (Level 3)")
+            # Placeholder for explanation while fetching
+            explanation_container = st.empty()
+            with st.spinner("Generating AI explanation..."):
+                try:
+                    explain_res = requests.post(
+                        EXPLAIN_URL,
+                        json={"triage_level": triage_level, "data": payload},
+                        timeout=45
+                    )
+                    if explain_res.status_code == 200:
+                        explanation = explain_res.json().get("explanation", "No explanation available")
+                    else:
+                        explanation = f"Explanation service error: status {explain_res.status_code}"
+                except Exception as e:
+                    explanation = f"Explanation service error: {e}"
 
-        # Show explanation under triage level
-        st.write("**Explanation:**")
-        st.write(explanation)
-    else:
-        st.error("Backend error")
+            with explanation_container.container():
+                st.write("**Explanation:**")
+                st.write(explanation)
+        else:
+            st.error("Backend error")
+    except Exception as e:
+        st.error(f"Failed to connect to backend: {e}")
+
+
 
