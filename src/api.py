@@ -44,7 +44,7 @@ def explain(req: ExplainRequest):
     }
 
     payload = {
-        "model": "thinkingmachines/inkling-small:free",
+        "model": "minimax/minimax-m3:free",
         "messages": [
             {
                 "role": "system",
